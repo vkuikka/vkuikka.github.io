@@ -1,0 +1,25 @@
+body::-webkit-scrollbar {
+  width: 5px;
+  background-color: red;
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background-color: grey;
+}
+
+body {
+	margin: 0;
+}
+
+canvas {
+	height: 100%;
+	width: 100%;
+}
+
+#view {
+	position: auto;
+	background: blue;
+	width: auto;
+	height: auto;
+	overflow: auto;
+}
