@@ -1,25 +1,50 @@
 body::-webkit-scrollbar {
-  width: 5px;
-  background-color: red;
+	width: 3px;
+	background-color: transparent;
 }
  
 body::-webkit-scrollbar-thumb {
-  background-color: grey;
+	background-color: rgb(40, 47, 109);
 }
 
-body {
+html {
+	background-color: black;
+}
+
+:root, body, html {
+	overscroll-behavior-y: none;
+	scroll-snap-stop: always;
+	border-collapse: collapse;
+	padding: 0;
 	margin: 0;
+	overflow: auto;
 }
 
 canvas {
-	height: 100%;
-	width: 100%;
+	/* display: block; */
+	color: white;
 }
 
 #view {
-	position: auto;
-	background: blue;
-	width: auto;
-	height: auto;
-	overflow: auto;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -10;
+	width: 100%;
+	height: 100%;
+}
+
+#cool {
+	/* font-family: "Lucida Console", Monospace; */
+	/* font-family: "Trebuchet MS", sans-serif; */
+	/* font-family: "Courier New", Courier, monospace; */
+	font: 1.3rem Inconsolata, monospace;
+	text-shadow: 0 0 5px #C8C8C8;
+
+	/* font-weight: bold; */
+	text-align: center;
+	font-size: 45px;
+	/* color: darkgreen; */
+	color: white;
+
 }
