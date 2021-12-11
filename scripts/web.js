@@ -1,6 +1,5 @@
 import * as input from "./input.js"
 export const	camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 500);
-import { loadOBJ } from "./init.js";
 
 const	scene = new THREE.Scene();
 const	renderer = new THREE.WebGLRenderer({canvas: document.querySelector("canvas")});
