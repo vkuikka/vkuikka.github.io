@@ -45,7 +45,13 @@ const MathUtils = {
 
 const uniformValuesRange = [0.01, 0.3];
 
-let currentScroll = window.pageYOffset;
+let currentScroll = 0;
+
+function blotter_scroll(event) {
+	currentScroll += event.deltaY;
+}
+window.addEventListener('wheel', blotter_scroll);
+
 let volatility = 0;
 
 const maxscroll = 10;
@@ -59,7 +65,7 @@ function moveIt(event) {
 
 	// material.uniforms.uOffset.value = Math.abs(speed / 100) + 0.0001;
 	// material.uniforms.uRotation.value = speed + 0.5;
-	const newScroll = window.pageYOffset;
+	const newScroll = 0;
 	const scrolled = Math.abs(newScroll - currentScroll);
 
 

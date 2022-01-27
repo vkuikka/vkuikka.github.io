@@ -7,12 +7,17 @@ html {
 }
 
 :root, body, html {
+	overflow-y: hidden;
+	overflow: hidden;
+
 	overscroll-behavior-y: none;
+	overscroll-behavior-x: none;
 	scroll-snap-stop: always;
 	border-collapse: collapse;
 	padding: 0;
 	margin: 0;
-	overflow: auto;
+	height: 100%;
+	width: 100%;
 }
 
 canvas {
@@ -29,20 +34,29 @@ canvas {
 	height: 100%;
 }
 
-#cool {
+.pages {
 	/* font-family: "Lucida Console", Monospace; */
 	/* font-family: "Trebuchet MS", sans-serif; */
 	/* font-family: "Courier New", Courier, monospace; */
 	font: 1.3rem Inconsolata, monospace;
-	text-shadow: 0 0 5px #C8C8C8;
+	/* text-shadow: 0 0 5px #C8C8C8; */
 
-	/* font-weight: bold; */
 	text-align: center;
+	font-weight: bold;
 	font-size: 30px;
-	height: 500px;
-	align-items: center;
-	/* color: darkgreen; */
+
+	position: absolute;
+	width: 40%;
+	height: 50%;
+	left: 30%;
+	top: 25%;
+
+	margin: auto;
+
 	color: white;
+
+	overflow: hidden;
+	border-radius: 10px;
 }
 
 .test {

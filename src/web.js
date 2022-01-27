@@ -1,5 +1,9 @@
 import * as input from "./input.js"
 
+import {main_scroll} from './phase.js';
+main_scroll();
+window.addEventListener('wheel', main_scroll);
+
 export const	camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 500);
 
 const	scene = new THREE.Scene();
@@ -84,7 +88,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 	// point1.position.set(50, 0, -5);
 	// point2.position.set(-50, 0, -5);
 
-	window.addEventListener("scroll", input.onMouseWheel, false);
+	window.addEventListener("wheel", input.onMouseWheel, false);
 	window.addEventListener("mousemove", input.onMouseMove, false);
 	window.addEventListener("keydown", input.onKeyDown, false);
 

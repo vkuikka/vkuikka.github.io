@@ -32,5 +32,5 @@ export function onKeyDown(event) {
 }
 
 export function onMouseWheel(event) {
-	camera.position.z = -window.scrollY / 3;
+	camera.position.z += -event.deltaY / 3;
 }
