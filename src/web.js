@@ -1,6 +1,6 @@
 import * as input from "./input.js"
 
-import {main_scroll} from './phase.js';
+import { main_scroll } from './phase.js';
 main_scroll();
 window.addEventListener('wheel', main_scroll);
 

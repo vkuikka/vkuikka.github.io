@@ -3,7 +3,7 @@ body::-webkit-scrollbar {
 }
  
 html {
-	background-color: gray;
+	background-color: black;
 }
 
 :root, body, html {
@@ -34,6 +34,41 @@ canvas {
 	height: 100%;
 }
 
+#no_col {
+	display: initial;
+	text-align: center;
+	width: 40%;
+	height: 60%;
+	left: 30%;
+	top: 25%;
+}
+
+img {
+	width: 100%;
+	height: auto;
+}
+
+.clean_link {
+	color: inherit;
+}
+
+.image_column {
+	grid-column: 1 / 2;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.text_column {
+	grid-column: 2 / 2;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 10%;
+}
+
 .pages {
 	/* font-family: "Lucida Console", Monospace; */
 	/* font-family: "Trebuchet MS", sans-serif; */
@@ -41,67 +76,64 @@ canvas {
 	font: 1.3rem Inconsolata, monospace;
 	/* text-shadow: 0 0 5px #C8C8C8; */
 
-	text-align: center;
+	/* text-align: center; */
 	font-weight: bold;
-	font-size: 30px;
+	font-size: 15px;
+
+	display: grid;
+	grid-template-columns: 50% 50%;
 
 	position: absolute;
-	width: 40%;
-	height: 50%;
-	left: 30%;
+	width: 60%;
+	height: 60%;
+	left: 20%;
 	top: 25%;
 
 	margin: auto;
+	text-align: left;
 
 	color: white;
 
 	overflow: hidden;
-	border-radius: 10px;
 }
 
-.test {
+.title {
 	display: flex;
 	font: "Gill Sans, sans-serif";
-	/* flex-direction: column; */
-	/* flex-wrap: wrap; */
-
 	justify-content: center;
-	/* align-items: center; */
-
 	font-size: 100px;
 	padding: 0;
 	margin: 0;
-
-	color: black;
-	-webkit-text-stroke-width: 1px;
-	-webkit-text-stroke-color: grey;
-	/* border: 1px solid blue; */
 }
 
-.in_flex {
-	padding: 0;
-	margin: 0;
-	/* border: 1px solid red; */
+.email_fields {
+	background-color: rgba(100, 100, 100, 0.3);
+	text-align: left;
+	padding: 10%;
+	font-size: 20px;
 }
 
+.email_fields input, textarea {
+	width: 100%;
+	font: inherit;
+	font-size: 15px;
+	min-height: 30px;
 
-
-.email_fields input,textarea {
-	width: 400px;
-	font-size: 400px;
-	height: 100px;
-	max-width: 400px;
-	margin: auto;
 	display: block;
 	background: none;
-	color: inherit;
 	border: none;
-	padding: 0;
-	font: inherit;
 	cursor: pointer;
-	outline: inherit;
-	color:white;
+	outline: none;
+
+	color: grey;
 	border-bottom: 2px solid white;
+}
+
+.email_fields textarea {
+	resize:vertical;
+	min-height: 60px;
+	max-height: 200px;
+	padding-top: 15px;
 }
 
 .email_fields button {
@@ -113,5 +145,5 @@ canvas {
 	padding: 0;
 	font: inherit;
 	cursor: pointer;
-	outline: inherit;
+	outline: none;
 }

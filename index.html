@@ -2,33 +2,87 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title> test </title>
+		<title> V </title>
 		<script src="src/libraries/blotter.min.js"></script>
 		<script src="src/libraries/liquidDistortMaterial.js"></script>
 		<script src="src/libraries/three.js"></script> 
 		<script src="src/libraries/OBJLoader.js"></script>
 		<script src="src/libraries/jquery.min.js"></script>
+
 		<script src="src/blotter_setup.js" type="module"></script>
 		<script src="src/phase.js" type="module"></script>
+
 		<link href= "web.css" rel="stylesheet" type="text/css">
+		<link rel="icon" type="image/gif" href="https://github.com/vkuikka/Fractal-explorer/raw/master/images/img3.png"/>
 	</head>
 	<body>
 		<div id="view">
 			<canvas></canvas>
 		</div>
-		<div style="height:10vh;"></div>
-		<div class="test">
-			<span class="in_flex" id='blotter_container'>Work in progress!</span>
+		<div style="height:5vh;"></div>
+		<div class="title">
+			<span id='blotter_container'>Work in progress!</span>
 		</div>
 		<div style="height:20vh;"></div>
-		<div class="pages">Page 1</div>
-		<div class="pages">Page 2</div>
-		<div class="pages">Page 3</div>
+		<div class="pages" id="no_col">
+			<div style="height:15vh;"></div>
+			<h1>Hello</h1>
+			I am a software engineering student based in Helsinki metropolitan area.
+			This is a portfolio of some of my programming projects. Scroll to see them :)
+		</div>
 		<div class="pages">
+			<div class="image_column">
+				<img src="https://github.com/vkuikka/doom-nukem/blob/master/github_media/shader.gif?raw=true" alt="Project image">
+				<!-- <img src="https://github.com/vkuikka/doom-nukem/raw/master/github_media/walking.gif" alt="Project image"> -->
+			</div>
+			<div class="text_column">
+				<h1><a href="https://github.com/vkuikka/doom-nukem" class="clean_link">Doom-nukem</a></h1>
+				3D FPS engine made in C, no hardware acceleration. Features include:
+				<ul>
+					<li>Option to raytrace or bake shadows.</li>
+					<li>Raytraced mirrors and windows with normal maps.</li>
+					<li>Animated 3d enemies.</li>
+					<li>Screenspace effects like bloom and ssao.</li>
+					<li>Interactable doors.</li>
+				</ul>
+			</div>
+		</div>
+		<div class="pages">
+			<div class="image_column">
+				<img src="https://github.com/vkuikka/web-scraper/raw/master/img/helsinki.png" alt="Project image" style="filter: brightness(7);">
+			</div>
+			<div class="text_column">
+				<h1><a href="https://github.com/vkuikka/web-scraper" class="clean_link">Web-scraper</a></h1>
+					Scrapes and visualizes data from Etuovi using Geopy.
+					Each house being sold is represented by pixels in the resulting image.
+					In this example the price per square meter is used to color the pixel.
+					Scraped data includes:
+				<ul>
+					<li>Price</li>
+					<li>Address</li>
+					<li>Floor area</li>
+					<li>Year of construcion</li>
+					<li>Seller name</li>
+				</ul>
+			</div>
+		</div>
+		<div class="pages">
+			<div class="image_column">
+				<img src="https://github.com/vkuikka/Fractal-explorer/raw/master/images/img6.png" alt="Project image">
+			</div>
+			<div class="text_column">
+				<h1><a href="https://github.com/vkuikka/Fractal-explorer" class="clean_link">Fractal explorer</a></h1>
+					Visualizes different fractal calculations that you can move around in live.
+					From very simple calculations emerge complex structured images.
+			</div>
+		</div>
+		<div class="pages" id="no_col">
 			<form action="https://formsubmit.co/a5fe4f44c3598b76d51603d610d50ab5" method="POST" class="email_fields">
-				<input type="email" name="email" placeholder="email" required>
+				Email
+				<input type="email" name="email" placeholder="" required>
 				</br>
-				<textarea type="text" name="name" placeholder="message" required></textarea>
+				Message
+				<textarea type="text" name="name" placeholder="" required></textarea>
 				</br>
 				<button type="submit">Send</button>
 			<div style="height:20vh;"></div>
