@@ -15,7 +15,7 @@ export function	scrollPages(event) {
 		if (pos > 1)
 			pos = pos * pos * speed;
 
-		let movez = String(pos * 0.75) + "px";
+		let movez = String(pos * 0.75);
 
 		let moveX = 0;
 		let moveY = 0;
@@ -31,23 +31,24 @@ export function	scrollPages(event) {
 			}
 			if (index % 2)
 			{
-				moveX = String(pos * moveXAmount) + "px";
-				angle = String(-pos * rotationAmount) + "deg";
+				moveX = String(pos * moveXAmount);
+				angle = String(-pos * rotationAmount);
 			}
 			else
 			{
-				moveX = String(-pos * moveXAmount) + "px";
-				angle = String(pos * rotationAmount) + "deg";
+				moveX = String(-pos * moveXAmount);
+				angle = String(pos * rotationAmount);
 			}
 			alpha = String(1 - (pos * 0.02));
 		}
 		let transforms = "";
 		transforms += "perspective(200px) ";
-		transforms += "scale3d(1,1,1) ";
-		transforms += "translate3d(" + moveX + "," + moveY + "," + movez + ")";
-		transforms += "rotateY(" + angle +") ";
+		transforms += "scale3d(0.8, 0.8, 0.8) ";
+		movez = parseFloat(movez) + 100;
+		transforms += "translate3d(" + moveX + "px," + moveY + "px," + movez + "px)";
+		transforms += "rotateY(" + angle +"deg) ";
 		$(this).css("opacity", alpha);
 		$(this).css("transform", transforms);
-		$(this).css("z-index", String(5 - index));
+		$(this).css("z-index", String(length - index));
 	});
 }

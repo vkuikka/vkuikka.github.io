@@ -20,12 +20,12 @@ html {
 	width: 100%;
 }
 
-canvas {
-	/* display: block; */
-	color: white;
+img {
+	width: 100%;
+	height: auto;
 }
 
-#view {
+#threejs_view {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -37,15 +37,9 @@ canvas {
 #no_col {
 	display: initial;
 	text-align: center;
-	width: 50%;
+	width: 30%;
 	height: 60%;
-	left: 25%;
-	top: 25%;
-}
-
-img {
-	width: 100%;
-	height: auto;
+	left: 35%;
 }
 
 .clean_link {
@@ -70,15 +64,8 @@ img {
 }
 
 .pages {
-	/* font-family: "Lucida Console", Monospace; */
-	/* font-family: "Trebuchet MS", sans-serif; */
-	/* font-family: "Courier New", Courier, monospace; */
-	font: 1.3rem Inconsolata, monospace;
-	/* text-shadow: 0 0 5px #C8C8C8; */
-
-	/* text-align: center; */
+	font: 15px Inconsolata, monospace;
 	font-weight: bold;
-	font-size: 15px;
 
 	display: grid;
 	grid-template-columns: 50% 50%;
@@ -87,23 +74,10 @@ img {
 	width: 60%;
 	height: 60%;
 	left: 20%;
-	top: 25%;
-
-	margin: auto;
+	top: 20%;
 	text-align: left;
-
 	color: white;
-
 	overflow: hidden;
-}
-
-.title {
-	display: flex;
-	font: "Gill Sans, sans-serif";
-	justify-content: center;
-	font-size: 100px;
-	padding: 0;
-	margin: 0;
 }
 
 .email_fields {
@@ -111,6 +85,7 @@ img {
 	text-align: left;
 	padding: 10%;
 	font-size: inherit;
+	height: 100%;
 }
 
 .email_fields input, textarea {

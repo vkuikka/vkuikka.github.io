@@ -15,19 +15,19 @@
 		<link rel="icon" type="image/gif" href="https://github.com/vkuikka/Fractal-explorer/raw/master/images/img3.png"/>
 	</head>
 	<body>
-		<div id="view">
+		<div id="threejs_view">
 			<canvas></canvas>
 		</div>
-		<div style="height:5vh;"></div>
-		<div class="title">
-			<span id='blotter_container'>Work in progress!</span>
-		</div>
-		<div style="height:20vh;"></div>
+		<div style="height:25vh;"></div>
 		<div class="pages" id="no_col">
 			<div style="height:15vh;"></div>
-			<h1>Hello</h1>
+			<div>
+				<span class='blotter'>Hello</span>
+			</div>
 			I am a software engineering student based in Helsinki metropolitan area.
-			This is a portfolio of some of my programming projects. Scroll to see them :)
+			This is a portfolio of some of my programming projects.
+			<br><br><br>
+			(Work in progress!)
 		</div>
 		<div class="pages">
 			<div class="image_column">
@@ -35,7 +35,7 @@
 				<!-- <img src="https://github.com/vkuikka/doom-nukem/raw/master/github_media/walking.gif" alt="Project image"> -->
 			</div>
 			<div class="text_column">
-				<h1><a href="https://github.com/vkuikka/doom-nukem" class="clean_link">Doom-nukem</a></h1>
+				<h1><a href="https://github.com/vkuikka/doom-nukem" class="clean_link">Doom Nukem</a></h1>
 				3D FPS engine made in C, no hardware acceleration. Features include:
 				<ul>
 					<li>Option to raytrace or bake shadows.</li>
@@ -71,11 +71,14 @@
 			</div>
 			<div class="text_column">
 				<h1><a href="https://github.com/vkuikka/Fractal-explorer" class="clean_link">Fractal explorer</a></h1>
-					Visualizes different fractal calculations that you can move around in live.
+					Move around in a couple different fractals live.
 					From very simple calculations emerge complex structured images.
 			</div>
 		</div>
 		<div class="pages" id="no_col">
+			<div>
+				<span class='blotter'>Contact me</span>
+			</div>
 			<form action="https://formsubmit.co/a5fe4f44c3598b76d51603d610d50ab5" method="POST" class="email_fields">
 				Email
 				<input type="email" name="email" placeholder="" required>
@@ -84,7 +87,6 @@
 				<textarea type="text" name="name" placeholder="" required></textarea>
 				</br>
 				<button type="submit">Send</button>
-			<div style="height:20vh;"></div>
 		</form>
 		</div>
 	</body>
