@@ -34,14 +34,6 @@ img {
 	height: 100%;
 }
 
-#no_col {
-	display: initial;
-	text-align: center;
-	width: 30%;
-	height: 60%;
-	left: 35%;
-}
-
 .clean_link {
 	color: inherit;
 }
@@ -78,6 +70,14 @@ img {
 	text-align: left;
 	color: white;
 	overflow: hidden;
+}
+
+.no_col {
+	display: initial;
+	text-align: center;
+	width: 30%;
+	height: 60%;
+	left: 35%;
 }
 
 .email_fields {
