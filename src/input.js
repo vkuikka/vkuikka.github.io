@@ -7,7 +7,6 @@ export function onMouseMove(event) {
 	mouse.y = (event.clientY / window.innerHeight) * 2 - 1;
 
 	camera.rotation.y = -mouse.x / 60;
-	// camera.rotation.z = -mouse.y / 30;
 	return mouse;
 }
 
@@ -44,5 +43,6 @@ export function onMouseWheel(event) {
 		if ((scroll > 0 || event.deltaY > 0) && (scroll < max_scroll || event.deltaY < 0))
 			scroll += event.deltaY;
 	}
-	camera.position.z = -scroll / 10;
+	camera.position.z = -scroll * 0.1;
+	camera.rotation.z = -scroll * 0.0002;
 }
