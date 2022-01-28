@@ -110,13 +110,13 @@ img {
 	background-color: rgba(100, 100, 100, 0.3);
 	text-align: left;
 	padding: 10%;
-	font-size: 20px;
+	font-size: inherit;
 }
 
 .email_fields input, textarea {
 	width: 100%;
 	font: inherit;
-	font-size: 15px;
+	font-size: inherit;
 	min-height: 30px;
 
 	display: block;

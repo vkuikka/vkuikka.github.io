@@ -18,5 +18,6 @@ export function	handleVertical() {
 	set.each(function( index ) {
 		$(this).css("grid-template-columns", "none");
 		$(this).css("grid-template-rows", "50% 50%");
+		$(this).css("font-size", "1.4vh");
 	});
 }
