@@ -51,6 +51,7 @@ export function scrollCamera(event) {
 		if (event.type == "touchmove") {
 			deltaY = lastY - event.touches[0].clientY;
 			lastY = event.touches[0].clientY;
+			deltaY *= 3;
 		}
 		if ((scroll > 0 || deltaY > 0) && (scroll < maxScroll || deltaY < 0))
 			scroll += deltaY;
