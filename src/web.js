@@ -1,6 +1,7 @@
 import * as input from "./input.js"
-import { page_scroll } from './phase.js';
+import * as pages from './pages.js';
 
+input.scrollCamera(0);
 export const	camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 500);
 
 const	scene = new THREE.Scene();
@@ -70,11 +71,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
 		function (error) {console.log("ERROR: failed to load OBJ file");}
 	);
 
-	page_scroll();
-	window.addEventListener('wheel', page_scroll);
-	window.addEventListener("wheel", input.onMouseWheel, false);
-	window.addEventListener("mousemove", input.onMouseMove, false);
-	window.addEventListener("keydown", input.onKeyDown, false);
+	pages.scrollPages();
+	window.addEventListener('wheel', pages.scrollPages, false);
+	window.addEventListener('wheel', input.scrollCamera, false);
+
+	window.addEventListener('touchstart', input.touchStart, false);
+	window.addEventListener('touchmove', input.scrollCamera, false);
+	window.addEventListener('touchmove', pages.scrollPages, false);
+
+	window.addEventListener('mousemove', input.onMouseMove, false);
+	window.addEventListener('keydown', input.onKeyDown, false);
 
 	renderer.setSize(window.innerWidth, window.innerHeight);
 

@@ -1,5 +1,5 @@
 import { camera } from './web.js';
-import { max_scroll } from './phase.js';
+import { maxScroll } from './pages.js';
 
 export function onMouseMove(event) {
 	var mouse = new THREE.Vector2();
@@ -31,17 +31,29 @@ export function onKeyDown(event) {
 	return (camera)
 }
 
-let scroll = 0;
+export var scroll = 0;
+let lastY = 0;
 
-export function onMouseWheel(event) {
+export function touchStart(event) {
+	lastY = event.touches[0].clientY;
+}
+
+export function scrollCamera(event) {
 	if (!event)
 	{
 		scroll = 0;
 		return;
 	}
 	else {
-		if ((scroll > 0 || event.deltaY > 0) && (scroll < max_scroll || event.deltaY < 0))
-			scroll += event.deltaY;
+		let	deltaY;
+		if (event.type == "wheel")
+			deltaY = event.deltaY;
+		if (event.type == "touchmove") {
+			deltaY = lastY - event.touches[0].clientY;
+			lastY = event.touches[0].clientY;
+		}
+		if ((scroll > 0 || deltaY > 0) && (scroll < maxScroll || deltaY < 0))
+			scroll += deltaY;
 	}
 	camera.position.z = -scroll * 0.1;
 	camera.rotation.z = -scroll * 0.0002;
