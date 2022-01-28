@@ -1,12 +1,10 @@
-var set = $('.blotter');
-var length = set.length;
-set.each(function( index ) {
-	var elem = $(this).get(0);
-	var text = new Blotter.Text(elem.textContent, {
+$('.blotter').each(function( index ) {
+	let elem = $(this).get(0);
+	let text = new Blotter.Text(elem.textContent, {
 		family : "serif",
-		size : 33,
-		paddingLeft: '33',
-		paddingRight: '33',
+		size : 30,
+		paddingLeft: '30',
+		paddingRight: '30',
 		fill : "#ffffff"
 	});
 	elem.textContent = '';
