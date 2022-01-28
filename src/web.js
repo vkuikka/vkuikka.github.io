@@ -1,5 +1,6 @@
 import * as input from "./input.js"
 import * as pages from './pages.js';
+import { handleVertical } from './vertical_screen.js';
 
 input.scrollCamera(0);
 export const	camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 500);
@@ -19,6 +20,9 @@ function resizeCanvasToDisplaySize() {
 		camera.updateProjectionMatrix();
 	}
 }
+
+if ($(window).width() < $(window).height())
+	handleVertical();
 
 window.addEventListener('DOMContentLoaded', (event) => {
 
