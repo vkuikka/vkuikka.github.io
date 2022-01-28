@@ -55,17 +55,22 @@ img {
 	padding: 10%;
 }
 
+.text_column h1 {
+	font-family: 'Abhaya Libre', serif;
+	font-size: None;
+}
+
 .pages {
-	font: 15px Inconsolata, monospace;
-	font-weight: bold;
+	font-family: 'Gelasio', serif;
+	font-size: 13px;
 
 	display: grid;
 	grid-template-columns: 50% 50%;
 
 	position: absolute;
-	width: 60%;
+	width: 50%;
 	height: 60%;
-	left: 20%;
+	left: 25%;
 	top: 20%;
 	text-align: left;
 	color: white;

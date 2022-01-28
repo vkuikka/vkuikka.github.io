@@ -1,7 +1,7 @@
 $('.blotter').each(function( index ) {
 	let elem = $(this).get(0);
 	let text = new Blotter.Text(elem.textContent, {
-		family : "serif",
+		family: 'Abhaya Libre, serif',
 		size : 30,
 		paddingLeft: '30',
 		paddingRight: '30',
