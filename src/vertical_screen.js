@@ -14,7 +14,7 @@ export function	handleVertical() {
 	});
 	$('.pages').each(function() {
 		$(this).css("grid-template-columns", "none");
-		$(this).css("grid-template-rows", "50% 50%");
+		$(this).css("grid-template-rows", "35% 65%");
 		$(this).css("font-size", "1.4vh");
 	});
 	$('.no_col').each(function() {
