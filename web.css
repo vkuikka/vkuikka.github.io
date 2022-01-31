@@ -107,6 +107,7 @@ img {
 
 	color: grey;
 	border-bottom: 2px solid white;
+	cursor: text;
 }
 
 .email_fields textarea {
