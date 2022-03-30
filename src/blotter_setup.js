@@ -24,15 +24,7 @@ $('.blotter').each(function( index ) {
 	var scope = blotter.forText(text);
 	scope.appendTo(elem);
 
-	const MathUtils = {
-		lineEq: (y2, y1, x2, x1, currentVal) => {
-			var m = (y2 - y1) / (x2 - x1), b = y1 - m * x1;
-			return m * currentVal + b;
-		},
-		lerp: (a, b, n) =>  (1 - n) * a + n * b
-	};
-
-	const uniformValuesRange = [0.01, 0.05];
+	function lerp(a, b, n) {return((1 - n) * a + n * b)}
 
 	let scrolled = 0;
 	function blotter_scroll(event) {
@@ -44,8 +36,8 @@ $('.blotter').each(function( index ) {
 	const maxscroll = 10;
 
 	function moveIt(event) {
-		volatility =  MathUtils.lerp(volatility, Math.min(MathUtils.lineEq(uniformValuesRange[1], uniformValuesRange[0], maxscroll, 0, scrolled), 0.9), 0.05);
-		material.uniforms.uVolatility.value = volatility;
+		volatility = lerp(volatility, scrolled / 200, 0.05);
+		material.uniforms.uVolatility.value = volatility + 0.02;
 		scrolled = 0;
 		requestAnimationFrame(moveIt);
 	}
