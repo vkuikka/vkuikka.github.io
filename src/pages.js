@@ -1,10 +1,11 @@
 import { scroll } from "./input.js"
 
-export let	maxScroll = 999999;
+export let	maxScroll = 5500
 
 export function	scrollPages(event) {
 	const	distBetween = -110;
 	const	speed = 0.1;
+
 	const	rotationAmount = 0.1;
 	const	moveXAmount = 10;
 
@@ -25,10 +26,10 @@ export function	scrollPages(event) {
 			alpha = String(1 - (-pos * 0.009));
 		if (pos > 1)
 		{
-			if (index === (length - 1)) {
-				maxScroll = scroll;
-				return ;
-			}
+			// if (index === (length - 1)) {
+			// 	maxScroll = scroll;
+			// 	return ;
+			// }
 			if (index % 2)
 			{
 				moveX = String(pos * moveXAmount);
@@ -39,7 +40,7 @@ export function	scrollPages(event) {
 				moveX = String(-pos * moveXAmount);
 				angle = String(pos * rotationAmount);
 			}
-			alpha = String(1 - (pos * 0.02));
+			alpha = String(1 - (pos * 0.05));
 		}
 		let transforms = "";
 		transforms += "perspective(200px) ";

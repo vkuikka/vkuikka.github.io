@@ -76,15 +76,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
 	);
 
 	pages.scrollPages();
-	window.addEventListener('wheel', pages.scrollPages, false);
-	window.addEventListener('wheel', input.scrollCamera, false);
+	window.addEventListener('wheel', pages.scrollPages, {passive:true});
+	window.addEventListener('wheel', input.scrollCamera, {passive:true});
 
-	window.addEventListener('touchstart', input.touchStart, false);
-	window.addEventListener('touchmove', input.scrollCamera, false);
-	window.addEventListener('touchmove', pages.scrollPages, false);
+	window.addEventListener('touchstart', input.touchStart, {passive:true});
+	window.addEventListener('touchmove', input.scrollCamera, {passive:true});
+	window.addEventListener('touchmove', pages.scrollPages, {passive:true});
 
-	window.addEventListener('mousemove', input.onMouseMove, false);
-	window.addEventListener('keydown', input.onKeyDown, false);
+	window.addEventListener('mousemove', input.onMouseMove, {passive:true});
+	window.addEventListener('keydown', input.onKeyDown, {passive:true});
 
 	renderer.setSize(window.innerWidth, window.innerHeight);
 
@@ -102,6 +102,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 	}
 	light1.position.set(camera.position.x, camera.position.y, camera.position.z + 10).normalize();
 	function animate() {
+		input.smoothScroll();
+		pages.scrollPages();
 		for (let i = 0; i < cube.length; i++)
 		{
 			cube[i].rotation.x += (xRands[i] - 0.5) * 0.05;
