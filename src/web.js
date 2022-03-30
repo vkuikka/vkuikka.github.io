@@ -25,7 +25,6 @@ if ($(window).width() < $(window).height())
 	handleVertical();
 
 window.addEventListener('DOMContentLoaded', (event) => {
-
 	var color = 0x203050;
 	var background = 0x303030;
 	color = 0x000000;
@@ -114,4 +113,5 @@ window.addEventListener('DOMContentLoaded', (event) => {
 		requestAnimationFrame(animate);
 	}
 	animate();
+	document.body.style.visibility = "visible";
 });

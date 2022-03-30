@@ -73,7 +73,7 @@ function lerp(a, b, n) {return((1 - n) * a + n * b)}
 
 function getScrollTarget(deltaY) {
 	let len = $('.pages').length;
-	let closest = 424242;
+	let closest = Infinity;
 	let i = 0
 	let	distBetween = maxScroll / len + 160;
 	let target = 0;
@@ -93,8 +93,8 @@ function getScrollTarget(deltaY) {
 }
 
 export function smoothScroll() {
-	scroll = lerp(scroll, scrollTarget, 0.05);
-
+	scroll = lerp(scroll, scrollTarget, 0.1);
+	lastY = scrollTarget - scroll;
 	camera.position.z = -scroll * 0.15;
 	// camera.rotation.z = -scroll * 0.0002;
 }
