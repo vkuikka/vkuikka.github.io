@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Audio Picker</title>
+<link rel="stylesheet" href="css/core/base.css" />
+<link rel="stylesheet" href="css/core/dropzone.css" />
+<link rel="stylesheet" href="css/core/controls.css" />
+<link rel="stylesheet" href="css/editor/waveform.css" />
+<link rel="stylesheet" href="css/editor/effects.css" />
+<link rel="stylesheet" href="css/tuner/tuner.css" />
+<link rel="stylesheet" href="css/browser/browser.css" />
+</head>
+<body>
+<div class="app">
+  <div class="app-header">
+    <div class="app-title">
+      <h1>Audio Picker</h1>
+      <p class="sub">Drop a file, drag to select, scroll to zoom (shift-scroll to pan), apply fades, export.</p>
+    </div>
+    <div class="seg" id="channelSeg" title="Playback & export channel mode">
+      <button data-channel="stereo" class="active">Stereo</button>
+      <button data-channel="mono">Mono</button>
+    </div>
+  </div>
+
+  <label class="drop" id="drop">
+    <div class="icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 15V3" />
+        <path d="m6 9 6-6 6 6" />
+        <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
+      </svg>
+    </div>
+    <div class="big">Drop an audio file, files, or a folder here</div>
+    <div class="hint">or click to choose — mp3, wav, ogg, flac, m4a, …</div>
+    <input type="file" id="file" accept="audio/*" multiple />
+  </label>
+
+  <section class="panel hidden" id="editor">
+    <div class="row">
+      <div class="filename" id="fname">—</div>
+      <div class="muted" id="meta">—</div>
+      <div style="flex:1"></div>
+      <button id="reset">Load different file</button>
+    </div>
+
+    <div class="wave-wrap" id="waveWrap">
+      <canvas class="wave" id="wave" width="2000" height="360"></canvas>
+      <div class="handle" id="hStart" style="left:0"></div>
+      <div class="handle" id="hEnd" style="left:100%"></div>
+      <div class="playhead" id="playhead" style="left:0; display:none"></div>
+    </div>
+    <div class="ruler" id="ruler"></div>
+
+    <div class="controls">
+      <div class="ctrl">
+        <label>Start <span class="val" id="startVal">0.00 s</span></label>
+        <input type="number" id="startInput" step="0.01" min="0" />
+      </div>
+      <div class="ctrl">
+        <label>End <span class="val" id="endVal">0.00 s</span></label>
+        <input type="number" id="endInput" step="0.01" min="0" />
+      </div>
+      <div class="ctrl">
+        <label>Fade in <span class="val" id="fadeInVal">0.00 s</span></label>
+        <input type="range" id="fadeIn" min="0" max="5" step="0.01" value="0" />
+      </div>
+      <div class="ctrl">
+        <label>Fade out <span class="val" id="fadeOutVal">0.00 s</span></label>
+        <input type="range" id="fadeOut" min="0" max="5" step="0.01" value="0" />
+      </div>
+      <div class="ctrl">
+        <label>Fade curve</label>
+        <div class="seg" id="curveSeg">
+          <button data-curve="linear" class="active">Linear</button>
+          <button data-curve="equal">Equal-power</button>
+          <button data-curve="exp">Exponential</button>
+        </div>
+      </div>
+      <div class="ctrl">
+        <label>Output format</label>
+        <div class="seg" id="fmtSeg">
+          <button data-fmt="wav" class="active">WAV 16-bit</button>
+          <button data-fmt="wav24">WAV 24-bit</button>
+        </div>
+      </div>
+      <div class="ctrl snap-card">
+        <label class="snap-toggle">
+          <span>Snap to beats</span>
+          <input type="checkbox" id="snapEnable" />
+        </label>
+        <div class="snap-fields">
+          <input type="number" id="bpmInput" value="120" min="1" max="999" step="0.01" title="BPM" />
+          <select id="snapDivSelect" title="Grid division">
+            <option value="1">1/1</option>
+            <option value="2">1/2</option>
+            <option value="4" selected>1/4</option>
+            <option value="8">1/8</option>
+            <option value="16">1/16</option>
+            <option value="32">1/32</option>
+          </select>
+        </div>
+        <div class="snap-fields">
+          <input type="number" id="snapOffsetInput" value="0" step="1" title="Grid offset (ms) — shifts beat 1" placeholder="offset ms" />
+          <button id="autoBpmBtn" title="Detect BPM & offset from the waveform">Auto</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <h3>Effects</h3>
+      <button id="fxToggle" class="pill active" title="Toggle all effects">on</button>
+      <div class="spacer"></div>
+      <div class="presets" id="presets">
+        <button data-preset="dry" class="active">Dry</button>
+        <button data-preset="small">Small room</button>
+        <button data-preset="cave">Cave</button>
+        <button data-preset="cathedral">Cathedral</button>
+        <button data-preset="distant">Distant</button>
+        <button class="save-btn" id="savePreset" title="Save current effect settings as a preset">+ Save</button>
+      </div>
+    </div>
+    <div class="controls" id="effectControls">
+      <div class="ctrl">
+        <label>Reverb mix <span class="val" id="revMixVal">0%</span></label>
+        <input type="range" id="revMix" min="0" max="1" step="0.01" value="0" />
+      </div>
+      <div class="ctrl">
+        <label>Reverb decay <span class="val" id="revDecayVal">2.0 s</span></label>
+        <input type="range" id="revDecay" min="0.1" max="8" step="0.1" value="2" />
+      </div>
+      <div class="ctrl">
+        <label>Pre-delay <span class="val" id="revPreVal">0 ms</span></label>
+        <input type="range" id="revPre" min="0" max="200" step="1" value="0" />
+      </div>
+      <div class="ctrl">
+        <label>Echo mix <span class="val" id="echoMixVal">0%</span></label>
+        <input type="range" id="echoMix" min="0" max="1" step="0.01" value="0" />
+      </div>
+      <div class="ctrl">
+        <label>Echo time <span class="val" id="echoTimeVal">250 ms</span></label>
+        <input type="range" id="echoTime" min="20" max="1000" step="1" value="250" />
+      </div>
+      <div class="ctrl">
+        <label>Echo feedback <span class="val" id="echoFbVal">30%</span></label>
+        <input type="range" id="echoFb" min="0" max="0.85" step="0.01" value="0.3" />
+      </div>
+      <div class="ctrl">
+        <label>Tone (low-pass) <span class="val" id="toneVal">20.0 kHz</span></label>
+        <input type="range" id="tone" min="400" max="20000" step="50" value="20000" />
+      </div>
+      <div class="ctrl">
+        <label>High-pass <span class="val" id="highpassVal">off</span></label>
+        <input type="range" id="highpass" min="0" max="2000" step="1" value="0" />
+      </div>
+      <div class="ctrl">
+        <label>Output gain <span class="val" id="gainVal">0.0 dB</span></label>
+        <input type="range" id="outGain" min="-24" max="12" step="0.5" value="0" />
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button class="primary" id="playSel">↻ Loop selection</button>
+      <button id="playFull">▶ Play full</button>
+      <button id="stop">■ Stop</button>
+      <button id="tuneLoopBtn">⫼ Tune loop</button>
+      <div style="flex:1"></div>
+      <button class="accent" id="download">⭳ Download snippet</button>
+    </div>
+  </section>
+
+  <section class="panel hidden" id="loopTuner">
+    <div class="loop-tuner-head">
+      <h3>Loop tuner</h3>
+      <span class="muted">click in a pane to play through the seam · scroll to zoom · drag the handle</span>
+      <div style="flex:1"></div>
+      <button id="closeLoopTuner">Close</button>
+    </div>
+    <div class="loop-tuner-panes">
+      <div class="loop-pane">
+        <div class="lp-label">End of loop (selEnd)</div>
+        <div class="lp-wrap" id="leftWrap">
+          <canvas class="lp-wave" id="leftWave"></canvas>
+          <div class="lp-handle" id="leftHandle"></div>
+          <div class="lp-playhead" id="leftPlayhead"></div>
+        </div>
+        <div class="lp-ruler" id="leftRuler"></div>
+      </div>
+      <div class="loop-pane">
+        <div class="lp-label">Start of loop (selStart)</div>
+        <div class="lp-wrap" id="rightWrap">
+          <canvas class="lp-wave" id="rightWave"></canvas>
+          <div class="lp-handle" id="rightHandle"></div>
+          <div class="lp-playhead" id="rightPlayhead"></div>
+        </div>
+        <div class="lp-ruler" id="rightRuler"></div>
+      </div>
+    </div>
+    <div class="loop-tuner-controls">
+      <div class="ctrl">
+        <label>Crossfade seam <span class="val" id="xfadeLenVal">off</span></label>
+        <input type="range" id="xfadeLen" min="0" max="500" step="1" value="0" />
+      </div>
+      <div class="ctrl">
+        <label>Crossfade curve</label>
+        <div class="seg" id="xfadeCurveSeg">
+          <button data-xc="equal" class="active">Equal-power</button>
+          <button data-xc="linear">Linear</button>
+        </div>
+      </div>
+      <div class="xfade-hint">
+        Blends the loop tail with audio from just before <code>selStart</code>, so the wrap is sample-continuous.
+        Needs pre-roll — if selStart is at 0, move it later to use this.
+      </div>
+    </div>
+  </section>
+
+  <section class="panel hidden" id="browser">
+    <div class="browser-head">
+      <h3>Sound browser</h3>
+      <span class="muted" id="browserCount">0 files</span>
+      <div style="flex:1"></div>
+      <button id="browserStop">■ Stop preview</button>
+      <button id="browserClear">Clear</button>
+    </div>
+    <div class="browser-list" id="browserList"></div>
+  </section>
+</div>
+
+<div class="drag-overlay" id="dragOverlay"></div>
+<div class="toast" id="toast"></div>
+
+<script src="js/core/state.js"></script>
+<script src="js/core/utils.js"></script>
+<script src="js/io/sample-rate.js"></script>
+<script src="js/waveform/render.js"></script>
+<script src="js/effects/graph.js"></script>
+<script src="js/effects/ui.js"></script>
+<script src="js/playback/playback.js"></script>
+<script src="js/io/files.js"></script>
+<script src="js/waveform/interaction.js"></script>
+<script src="js/waveform/inputs.js"></script>
+<script src="js/effects/presets.js"></script>
+<script src="js/io/render-export.js"></script>
+<script src="js/browser/browser.js"></script>
+<script src="js/tuner/render.js"></script>
+<script src="js/tuner/interaction.js"></script>
+<script src="js/bpm/bpm.js"></script>
+<script src="js/io/drag-drop.js"></script>
+<script src="js/core/main.js"></script>
+</body>
+</html>

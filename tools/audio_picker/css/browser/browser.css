@@ -1,0 +1,105 @@
+.browser-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.browser-head h3 {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.browser-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 520px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.browser-item {
+  display: grid;
+  grid-template-columns: 36px minmax(130px, 220px) 1fr 52px auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 10px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: border-color .1s, background .1s;
+}
+.bi-delete {
+  width: 30px; height: 30px; padding: 0;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--muted);
+}
+.bi-delete:hover {
+  background: rgba(255, 124, 124, 0.15);
+  color: var(--warn);
+  border-color: var(--warn);
+}
+.browser-item:hover { border-color: #36405e; }
+.browser-item.playing { border-color: var(--accent-2); }
+.browser-item.current { background: #1d2336; border-color: var(--accent); }
+.bi-play {
+  width: 30px; height: 30px; padding: 0;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  font-size: 12px;
+}
+.bi-name {
+  font-weight: 500;
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.bi-wave-wrap {
+  position: relative;
+  height: 40px;
+  cursor: pointer;
+}
+.bi-wave-wrap.loading::after {
+  content: 'decoding…';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 11px;
+  font-style: italic;
+}
+.bi-wave {
+  width: 100%;
+  height: 40px;
+  display: block;
+  background: var(--panel);
+  border-radius: 6px;
+}
+.bi-playhead {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 40px;
+  background: var(--accent-2);
+  display: none;
+  pointer-events: none;
+}
+.bi-dur {
+  color: var(--muted);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+.bi-edit {
+  font-size: 12px;
+  padding: 6px 10px;
+}

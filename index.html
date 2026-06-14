@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title> Ville Kuikka </title>
+		<script src="src/libraries/blotter.min.js"></script>
+		<script src="src/libraries/liquidDistortMaterial.js"></script>
+		<script src="src/libraries/three.js"></script>
+		<script src="src/libraries/jquery.min.js"></script>
+		<script src="src/blotter_setup.js" type="module"></script>
+		<script src="src/web.js" type="module"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href= "web.css" rel="stylesheet" type="text/css">
+		<link rel="icon" type="image/gif" href="https://github.com/vkuikka/Fractal-explorer/raw/master/images/img3.png"/>
+
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;700&family=Gelasio:ital@0;1&display=swap');
+		</style>
+
+		<script>
+			// Failsafe: the 3D background is an enhancement. If its script fails to
+			// load at all, still reveal the page, which sits on a solid black background.
+			(function () {
+				function reveal() { if (document.body) document.body.style.visibility = 'visible'; }
+				window.addEventListener('load', reveal);
+				setTimeout(reveal, 1500);
+			})();
+		</script>
+
+		<noscript>
+			<style>body { visibility: visible !important; }</style>
+		</noscript>
+
+	</head>
+	<body style='visibility: hidden;'>
+		<div id="threejs_view">
+			<canvas></canvas>
+		</div>
+
+		<main class="intro">
+			<div class="content">
+				<header class="hero">
+					<h1><span class='blotter'>Ville Kuikka</span></h1>
+					<p class="role">Software developer &middot; Helsinki, Finland</p>
+				</header>
+
+				<p class="lead">
+					I work across 3D, cloud, and language models, from writing low-level C
+					by hand to driving heavily agentic workflows.
+				</p>
+
+				<section class="now">
+					<span class="pill">Currently building</span>
+					<h2><a href="https://plottery.app" target="_blank" rel="noopener">Plottery</a></h2>
+					<p>
+						A desktop role-playing game: you make the decisions, a local
+						language model narrates. It runs offline on Mac, Windows, and Linux.
+					</p>
+					<blockquote>
+						&ldquo;Instead of optimizing for compute, we optimize for storytelling.&rdquo;
+					</blockquote>
+					<a class="cta" href="https://plottery.app" target="_blank" rel="noopener">Visit plottery.app &rarr;</a>
+				</section>
+
+				<section class="now">
+					<span class="pill pill--muted">Software developer &middot; four years</span>
+					<h2><a href="https://elisa.fi" target="_blank" rel="noopener">Elisa</a></h2>
+					<p>
+						Digital twins in Nvidia Omniverse for warehouse management and
+						mobile-network planning. Browser-based 3D tools with mesh generation
+						and Blender light-baking. The LLM layer of a data analytics platform,
+						built on RAG. CI/CD pipelines and cloud deployments across several projects.
+					</p>
+				</section>
+
+				<section class="now">
+					<span class="pill pill--muted">School project</span>
+					<h2><a href="https://github.com/vkuikka/doom-nukem" target="_blank" rel="noopener">Doom Nukem</a></h2>
+					<p>
+						A 3D engine in C, rendered entirely on the CPU in software, with
+						SDL handling the window and pixel buffer. Ray-traced lighting and
+						baking, a level editor, and a VR demo run off Arduino sensors. We
+						built it to understand the math behind 3D rendering.
+					</p>
+				</section>
+
+				<footer class="links">
+					<a href="https://github.com/vkuikka" target="_blank" rel="noopener">GitHub</a>
+					<a href="https://www.shadertoy.com/user/V1773" target="_blank" rel="noopener">Shadertoy</a>
+					<a href="https://www.linkedin.com/in/ville-kuikka/" target="_blank" rel="noopener">LinkedIn</a>
+				</footer>
+			</div>
+		</main>
+	</body>
+</html>

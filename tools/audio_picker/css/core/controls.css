@@ -1,0 +1,117 @@
+.controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+.ctrl {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+.ctrl label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.ctrl .val {
+  color: var(--fg);
+  font-variant-numeric: tabular-nums;
+}
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+input[type="number"] {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--fg);
+  padding: 6px 8px;
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+button {
+  background: var(--panel-2);
+  color: var(--fg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 16px;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background .12s, border-color .12s, transform .06s;
+}
+button:hover { background: #242a3c; }
+button:active { transform: translateY(1px); }
+button.primary {
+  background: var(--accent);
+  color: #0b0e16;
+  border-color: var(--accent);
+}
+button.primary:hover { filter: brightness(1.05); }
+button.accent {
+  background: var(--accent-2);
+  color: #0b0e16;
+  border-color: var(--accent-2);
+}
+button.accent:hover { filter: brightness(1.05); }
+button:disabled { opacity: .4; cursor: not-allowed; }
+
+.seg {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.seg button {
+  border: none;
+  border-radius: 0;
+  background: var(--panel-2);
+  padding: 6px 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.seg button.active {
+  background: var(--accent);
+  color: #0b0e16;
+}
+
+.snap-card .snap-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  cursor: pointer;
+}
+.snap-card .snap-toggle input { accent-color: var(--accent); }
+.snap-card .snap-fields {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+.snap-card input[type="number"],
+.snap-card select {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--fg);
+  padding: 6px 8px;
+  font: inherit;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}

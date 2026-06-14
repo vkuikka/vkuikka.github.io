@@ -1,0 +1,54 @@
+#effectControls.fx-off { opacity: 0.5; }
+
+.presets {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.presets button {
+  padding: 5px 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.presets button.active {
+  background: var(--accent);
+  color: #0b0e16;
+  border-color: var(--accent);
+}
+.presets button.custom-preset {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding-right: 4px;
+  border-color: var(--accent-2);
+  color: var(--fg);
+}
+.presets button.custom-preset.active {
+  background: var(--accent-2);
+  color: #0b0e16;
+  border-color: var(--accent-2);
+}
+.presets button.custom-preset .x {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 1;
+  opacity: 0.55;
+}
+.presets button.custom-preset .x:hover {
+  background: rgba(255,255,255,0.18);
+  opacity: 1;
+}
+.presets button.save-btn {
+  background: transparent;
+  color: var(--muted);
+  border-style: dashed;
+}
+.presets button.save-btn:hover {
+  color: var(--fg);
+  border-color: var(--accent);
+}

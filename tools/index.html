@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title> Tools &middot; Ville Kuikka </title>
+		<script src="../src/libraries/blotter.min.js"></script>
+		<script src="../src/libraries/liquidDistortMaterial.js"></script>
+		<script src="../src/libraries/three.js"></script>
+		<script src="../src/libraries/jquery.min.js"></script>
+		<script src="../src/blotter_setup.js" type="module"></script>
+		<script src="../src/web.js" type="module"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href= "../web.css" rel="stylesheet" type="text/css">
+		<link rel="icon" type="image/gif" href="https://github.com/vkuikka/Fractal-explorer/raw/master/images/img3.png"/>
+
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;700&family=Gelasio:ital@0;1&display=swap');
+		</style>
+
+		<script>
+			// Failsafe: the 3D background is an enhancement. If its script fails to
+			// load at all, still reveal the page, which sits on a solid black background.
+			(function () {
+				function reveal() { if (document.body) document.body.style.visibility = 'visible'; }
+				window.addEventListener('load', reveal);
+				setTimeout(reveal, 1500);
+			})();
+		</script>
+
+		<noscript>
+			<style>body { visibility: visible !important; }</style>
+		</noscript>
+
+	</head>
+	<body style='visibility: hidden;'>
+		<div id="threejs_view">
+			<canvas></canvas>
+		</div>
+
+		<main class="intro">
+			<div class="content">
+				<header class="hero">
+					<h1><span class='blotter'>Tools</span></h1>
+				</header>
+
+				<section class="now">
+					<span class="pill">Audio</span>
+					<h2><a href="audio_picker/">Audio Picker</a></h2>
+					<p>
+						A browser-based audio workbench: load a file, scrub the waveform,
+						pick out loops, tune samples, chain effects, and export the result.
+					</p>
+					<a class="cta" href="audio_picker/">Open Audio Picker &rarr;</a>
+				</section>
+
+				<section class="now">
+					<span class="pill">Animation</span>
+					<h2><a href="speech_to_anim/">Speech &rarr; Animation</a></h2>
+					<p>
+						Turn speech into animation in the browser.
+					</p>
+					<a class="cta" href="speech_to_anim/">Open Speech &rarr; Animation &rarr;</a>
+				</section>
+
+				<footer class="links">
+					<a href="../">&larr; Home</a>
+					<a href="https://github.com/vkuikka" target="_blank" rel="noopener">GitHub</a>
+				</footer>
+			</div>
+		</main>
+	</body>
+</html>
