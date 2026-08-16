@@ -12,7 +12,6 @@ body::-webkit-scrollbar {
 
 .intro::-webkit-scrollbar-thumb {
 	background: rgba(243, 241, 236, 0.18);
-	border-radius: 999px;
 }
 
 .intro::-webkit-scrollbar-thumb:hover {
@@ -27,6 +26,8 @@ html {
 	--accent: #e0b877;
 	--text: #f3f1ec;
 	--muted: rgba(243, 241, 236, 0.62);
+	--rule: rgba(243, 241, 236, 0.16);
+	--sheet: rgba(6, 6, 9, 0.62);
 }
 
 :root, body, html {
@@ -63,23 +64,26 @@ html {
 	box-sizing: border-box;
 	padding: 6vh 24px;
 	overflow-y: auto;
+	overflow-x: hidden;
 	scrollbar-width: thin;
 	scrollbar-color: rgba(243, 241, 236, 0.22) transparent;
 
-	text-align: center;
 	color: var(--text);
 	font-family: 'Gelasio', serif;
-	font-size: 15px;
+	font-size: 16px;
 	line-height: 1.7;
 }
 
+/* One sheet behind the whole column, so the text stays readable over the
+   moving background without turning each section into a floating card. */
 .content {
 	width: 100%;
-	max-width: 640px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 24px;
+	max-width: 620px;
+	box-sizing: border-box;
+	padding: 52px 46px 44px;
+	background: var(--sheet);
+	border-left: 1px solid var(--rule);
+	border-right: 1px solid var(--rule);
 
 	animation: rise 0.9s ease both;
 }
@@ -89,8 +93,12 @@ html {
 	to   { opacity: 1; transform: translateY(0); }
 }
 
+/* Hero ----------------------------------------------------------------- */
+
 .hero {
-	margin-bottom: 2px;
+	text-align: center;
+	padding-bottom: 34px;
+	border-bottom: 1px solid var(--rule);
 }
 
 .hero h1 {
@@ -102,112 +110,122 @@ html {
 
 .hero .blotter {
 	display: inline-block;
+	max-width: 100%;
+}
+
+/* The effect renders into a fixed-size canvas; keep it inside the column on
+   narrow screens instead of pushing the page sideways. */
+.hero .blotter canvas {
+	max-width: 100%;
+	height: auto;
 }
 
 .role {
-	margin: 12px 0 0;
+	margin: 10px 0 0;
 	font-style: italic;
-	letter-spacing: 0.02em;
 	color: var(--muted);
 }
 
 .lead {
-	margin: 0;
-	font-size: 17px;
-	max-width: 30em;
+	margin: 30px 0 0;
+	font-size: 19px;
+	line-height: 1.6;
 }
 
-/* Currently building -------------------------------------------------- */
-
-.now {
-	width: 100%;
-	box-sizing: border-box;
-	padding: 28px 30px 30px;
-	border: 1px solid rgba(243, 241, 236, 0.14);
-	border-radius: 16px;
-	background: rgba(12, 12, 16, 0.55);
-	backdrop-filter: blur(14px);
-	-webkit-backdrop-filter: blur(14px);
-	box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
-}
-
-.pill {
-	display: inline-block;
-	font-size: 11px;
-	letter-spacing: 0.18em;
-	text-transform: uppercase;
+.lead::first-letter {
+	font-family: 'Abhaya Libre', serif;
+	font-size: 46px;
+	line-height: 1;
+	float: left;
+	padding: 6px 10px 0 0;
 	color: var(--accent);
-	padding: 5px 12px;
-	border: 1px solid rgba(224, 184, 119, 0.4);
-	border-radius: 999px;
 }
 
-.pill--muted {
-	color: var(--muted);
-	border-color: rgba(243, 241, 236, 0.2);
+/* Entries -------------------------------------------------------------- */
+
+.entry {
+	margin-top: 34px;
+	padding-top: 34px;
+	border-top: 1px solid var(--rule);
 }
 
-.now h2 {
-	margin: 16px 0 8px;
+/* The hero already draws a rule under itself. */
+.hero + .entry {
+	border-top: 0;
+}
+
+.label {
+	margin: 0;
+	font-style: italic;
+	font-size: 15px;
+	color: var(--accent);
+}
+
+.entry h2 {
+	margin: 2px 0 10px;
 	font-family: 'Abhaya Libre', serif;
 	font-weight: 700;
-	font-size: 30px;
+	font-size: 34px;
+	line-height: 1.1;
 }
 
-.now h2 a {
+.entry h2 a {
 	color: var(--text);
 	text-decoration: none;
-	transition: color 0.2s ease;
+	border-bottom: 1px solid var(--rule);
+	transition: color 0.2s ease, border-color 0.2s ease;
 }
 
-.now h2 a:hover {
+.entry h2 a:hover {
 	color: var(--accent);
+	border-bottom-color: var(--accent);
 }
 
-.now p {
-	margin: 0 auto;
-	max-width: 34em;
+.entry p {
+	margin: 0;
 	color: var(--muted);
 }
 
-.now blockquote {
-	margin: 18px 0 22px;
-	padding-left: 16px;
-	border-left: 2px solid rgba(224, 184, 119, 0.5);
-	text-align: left;
+.entry blockquote {
+	margin: 22px 0;
+	font-family: 'Abhaya Libre', serif;
+	font-size: 26px;
+	line-height: 1.35;
 	font-style: italic;
-	color: var(--text);
+	text-indent: -0.42em;
 }
 
-.cta {
+.more {
 	display: inline-block;
-	font-style: normal;
-	letter-spacing: 0.02em;
-	color: #16140f;
-	background: var(--accent);
+	margin-top: 18px;
+	color: var(--accent);
 	text-decoration: none;
-	padding: 11px 22px;
-	border-radius: 999px;
-	transition: transform 0.15s ease, box-shadow 0.2s ease;
+	border-bottom: 1px solid var(--accent);
+	padding-bottom: 2px;
+	transition: color 0.2s ease, border-color 0.2s ease;
 }
 
-.cta:hover {
-	transform: translateY(-1px);
-	box-shadow: 0 10px 26px rgba(224, 184, 119, 0.28);
+.more:hover {
+	color: var(--text);
+	border-bottom-color: var(--text);
 }
 
 /* Footer --------------------------------------------------------------- */
 
 .links {
 	display: flex;
+	flex-wrap: wrap;
 	gap: 26px;
+	justify-content: center;
+	margin-top: 40px;
+	padding-top: 26px;
+	border-top: 1px solid var(--rule);
 }
 
 .links a {
 	color: var(--muted);
 	text-decoration: none;
-	font-size: 14px;
-	letter-spacing: 0.04em;
+	font-size: 15px;
 	border-bottom: 1px solid transparent;
 	padding-bottom: 2px;
 	transition: color 0.2s ease, border-color 0.2s ease;
@@ -216,4 +234,20 @@ html {
 .links a:hover {
 	color: var(--text);
 	border-bottom-color: var(--text);
+}
+
+@media (max-width: 560px) {
+	.content {
+		padding: 40px 24px 34px;
+		border-left: 0;
+		border-right: 0;
+	}
+
+	.entry h2 {
+		font-size: 28px;
+	}
+
+	.entry blockquote {
+		font-size: 22px;
+	}
 }
