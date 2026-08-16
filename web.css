@@ -141,17 +141,33 @@ html {
 	color: var(--accent);
 }
 
-/* Entries -------------------------------------------------------------- */
+/* Groups and entries ---------------------------------------------------- */
 
-.entry {
+.group {
 	margin-top: 34px;
-	padding-top: 34px;
+	padding-top: 32px;
 	border-top: 1px solid var(--rule);
 }
 
-/* The hero already draws a rule under itself. */
+.group-title {
+	margin: 0 0 28px;
+	font-family: 'Abhaya Libre', serif;
+	font-weight: 400;
+	font-size: 17px;
+	letter-spacing: 0.06em;
+	color: var(--muted);
+}
+
+.entry + .entry {
+	margin-top: 32px;
+	padding-top: 32px;
+	border-top: 1px solid var(--rule);
+}
+
+/* The tools page lists entries without a group heading, so the first one
+   needs the spacing the group would have given it. */
 .hero + .entry {
-	border-top: 0;
+	margin-top: 34px;
 }
 
 .label {
@@ -161,7 +177,8 @@ html {
 	color: var(--accent);
 }
 
-.entry h2 {
+.entry h2,
+.entry h3 {
 	margin: 2px 0 10px;
 	font-family: 'Abhaya Libre', serif;
 	font-weight: 700;
@@ -169,14 +186,16 @@ html {
 	line-height: 1.1;
 }
 
-.entry h2 a {
+.entry h2 a,
+.entry h3 a {
 	color: var(--text);
 	text-decoration: none;
 	border-bottom: 1px solid var(--rule);
 	transition: color 0.2s ease, border-color 0.2s ease;
 }
 
-.entry h2 a:hover {
+.entry h2 a:hover,
+.entry h3 a:hover {
 	color: var(--accent);
 	border-bottom-color: var(--accent);
 }
@@ -234,7 +253,8 @@ html {
 		border-right: 0;
 	}
 
-	.entry h2 {
+	.entry h2,
+	.entry h3 {
 		font-size: 28px;
 	}
 }
