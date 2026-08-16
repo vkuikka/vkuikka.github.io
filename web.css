@@ -150,15 +150,6 @@ html {
 	line-height: 1.6;
 }
 
-.lead::first-letter {
-	font-family: 'Abhaya Libre', serif;
-	font-size: 46px;
-	line-height: 1;
-	float: left;
-	padding: 6px 10px 0 0;
-	color: var(--accent);
-}
-
 /* Groups and entries ---------------------------------------------------- */
 
 .group {
