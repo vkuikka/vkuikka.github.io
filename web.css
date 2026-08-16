@@ -60,9 +60,8 @@ html {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: safe center;
 	box-sizing: border-box;
-	padding: 6vh 24px;
+	padding: 0 24px;
 	overflow-y: auto;
 	overflow-x: hidden;
 	scrollbar-width: thin;
@@ -72,6 +71,16 @@ html {
 	font-family: 'Gelasio', serif;
 	font-size: 16px;
 	line-height: 1.7;
+}
+
+/* Two flex items that grow into whatever room is left over. They centre the
+   column on a tall screen and keep a fixed gap above and below it once the
+   text is taller than the screen. Centring the scroll container itself, or
+   padding it, loses the top or the bottom of the column in some browsers. */
+.intro::before,
+.intro::after {
+	content: '';
+	flex: 1 0 6vh;
 }
 
 /* One sheet behind the whole column, so the text stays readable over the
@@ -85,7 +94,16 @@ html {
 	border-left: 1px solid var(--rule);
 	border-right: 1px solid var(--rule);
 
-	animation: rise 0.9s ease both;
+	/* No fill mode: a browser that never runs the animation, because the tab is
+	   throttled or in a background frame, then shows the text rather than
+	   holding it at the opacity 0 the first frame asks for. */
+	animation: rise 0.9s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.content {
+		animation: none;
+	}
 }
 
 @keyframes rise {
