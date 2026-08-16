@@ -1,25 +1,23 @@
 body::-webkit-scrollbar {
-	width: 0px;
-}
-
-.intro::-webkit-scrollbar {
 	width: 8px;
 }
 
-.intro::-webkit-scrollbar-track {
+body::-webkit-scrollbar-track {
 	background: transparent;
 }
 
-.intro::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb {
 	background: rgba(243, 241, 236, 0.18);
 }
 
-.intro::-webkit-scrollbar-thumb:hover {
+body::-webkit-scrollbar-thumb:hover {
 	background: rgba(243, 241, 236, 0.32);
 }
 
 html {
 	background-color: black;
+	scrollbar-width: thin;
+	scrollbar-color: rgba(243, 241, 236, 0.22) transparent;
 }
 
 :root {
@@ -30,13 +28,19 @@ html {
 	--sheet: rgba(6, 6, 9, 0.62);
 }
 
+/* The page itself scrolls. Nothing is a scroll container of its own: an inner
+   one that is also centred puts the start and the end of a long column out of
+   reach in some browsers. */
 :root, body, html {
-	overflow: hidden;
-	overscroll-behavior: none;
 	padding: 0;
 	margin: 0;
-	height: 100%;
 	width: 100%;
+}
+
+body {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
 }
 
 #threejs_view {
@@ -54,33 +58,23 @@ html {
 	height: 100%;
 }
 
+/* Grows to fill a tall window so the column sits in the middle of it, and
+   grows past it once the text is longer. Not a scroll container, so centring
+   here can never push anything out of reach. */
 .intro {
-	position: fixed;
-	inset: 0;
+	flex: 1;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: center;
 	box-sizing: border-box;
-	padding: 0 24px;
-	overflow-y: auto;
+	padding: 6vh 24px;
 	overflow-x: hidden;
-	scrollbar-width: thin;
-	scrollbar-color: rgba(243, 241, 236, 0.22) transparent;
 
 	color: var(--text);
 	font-family: 'Gelasio', serif;
 	font-size: 16px;
 	line-height: 1.7;
-}
-
-/* Two flex items that grow into whatever room is left over. They centre the
-   column on a tall screen and keep a fixed gap above and below it once the
-   text is taller than the screen. Centring the scroll container itself, or
-   padding it, loses the top or the bottom of the column in some browsers. */
-.intro::before,
-.intro::after {
-	content: '';
-	flex: 1 0 6vh;
 }
 
 /* One sheet behind the whole column, so the text stays readable over the
